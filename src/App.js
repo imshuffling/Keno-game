@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+let numbers = Array.from(Array(80).keys(), n => n + 1);
+
+class App extends Component {
+  state = {
+    list: numbers,
+    active: false
+  };
+
+  render() {
+    return (
+      <div>
+        <ul className="grid">
+          {this.state.list.map((item, index) =>
+            <li onClick={() => this.setState({ active: true})}  key={index}>{item}</li>
+          )}
+        </ul>
+
+        <form>
+          <input placeholder="Place your stake"></input>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default App;
